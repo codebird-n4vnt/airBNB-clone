@@ -3,7 +3,7 @@ import Client from "../models/userModel.js"
 
 export const getCurrentUser = async (req,res) =>{
     try {
-        const user = await Client.findById(req.userId).select("-password"); // populate makes listing's fields available //.populate("listing","title image1 image2 image3 description city landmark category rent")
+        const user = await Client.findById(req.userId).select("-password").populate("listing","title image1 image2 image3 description city landmark category rent"); // populate makes listing's fields available //
         console.log(user)
         if(!user){
             // res.status(400).json({message:'User not found'})

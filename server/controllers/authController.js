@@ -29,7 +29,7 @@ export const signUp = async (req, res) => {
 export const login = async (req,res) =>{
   try {
     let { email, password } = req.body;
-    let existUser = await Client.findOne({ email }) // .populate("listing","title image1 image2 image3 description city landmark category rent");
+    let existUser = await Client.findOne({ email }).populate("listing","title image1 image2 image3 description city landmark category rent");
     console.log(existUser)
     if (!existUser) {
       
