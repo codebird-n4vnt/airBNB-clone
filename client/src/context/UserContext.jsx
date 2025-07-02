@@ -17,7 +17,7 @@ function UserContext({ children }) {
       const result = await axios.get(serverUrl + "/api/user/userdata", {
         withCredentials: true,
       });
-      setUserData(result.data);
+        setUserData(result.data);
     } catch (error) {
       setUserData(null);
       console.log(error);

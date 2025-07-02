@@ -25,6 +25,7 @@ export const Navbar = () => {
   const [showHampop, setShowHampop] = useState(false);
   const navigate = useNavigate();
   const { category, setCategory } = useContext(listingDataContext);
+  
   const handleLogout = async () => {
     try {
       let result = await axios.post(serverUrl + "/api/auth/logout", {
@@ -32,7 +33,7 @@ export const Navbar = () => {
       });
       console.log(result);
       setUserData(null);
-      console.log(userData);
+      
     } catch (err) {
       console.log(err);
     }
@@ -67,17 +68,18 @@ export const Navbar = () => {
               <span>
                 <GiHamburgerMenu className="hamburger-ico" />
               </span>
-              {/* {userData === undefined ? (
+              {!userData ? (
                 <span>
                   <CgProfile className="profile-ico" />
                 </span>
               ) : (
-                <span className="myProfile">{userData.name.slice(0, 1)}</span>
-              )} */}
+                <span className="myProfile">{
+                  userData.name.slice(0, 1)}</span>
+              )}
             </button>
             {showHampop && (
               <div className="hampop">
-                {userData === undefined? (
+                {!userData? (
                   <p onClick={() => navigate("/login")}>Login</p>
                 ) : (
                   <p onClick={() => handleLogout()}>Logout</p>

@@ -20,9 +20,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route  path='/' element={userData?<Home/>:<Navigate to={'/'}/>}  />
-        <Route  path='/login' element={userData?<Login/>:<Navigate to={'/'}/>}  />
-        <Route  path='/signup' element={userData?<SignUp/>:<Navigate to={'/'}/>}  />
+        <Route  path='/' element=<Home/>  />
+        <Route  path='/login' element=<Login/>  />
+        <Route  path='/signup' element=<SignUp/>  />
         <Route  path='/mylisting' element={userData?<Mylisting/>:<Navigate to={'/'}/>}  /> 
         <Route  path='/addlisting1' element={userData?<AddListing1/>:<Navigate to={'/'}/>}  /> 
         <Route  path='/addlisting2' element={userData?<AddListing2/>:<Navigate to={'/'}/>}  /> 

@@ -3,12 +3,14 @@ import Client from "../models/userModel.js"
 
 export const getCurrentUser = async (req,res) =>{
     try {
-        const user = await Client.findById(req.userId).select("-password").populate("listing","title image1 image2 image3 description city landmark category rent"); // populate makes listing's fields available
+        const user = await Client.findById(req.userId).select("-password"); // populate makes listing's fields available //.populate("listing","title image1 image2 image3 description city landmark category rent")
         console.log(user)
         if(!user){
-            res.status(400).json({message:'User not found'})
+            // res.status(400).json({message:'User not found'})
+            console.log('user not found')
         }
-        res.status(200).json(user)
+        else    
+            res.status(200).json(user)
        
     } catch (error) {
         res.status(500).json({message:`getCurrentUser error ${error}`})

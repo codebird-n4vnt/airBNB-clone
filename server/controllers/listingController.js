@@ -39,6 +39,8 @@ export const getListing = async (req,res) => {
   try {
     let listing = await Listing.find().sort({createdAt:-1});
     res.status(200).json(listing)
+    if(!listing)
+      res.status(400).json({message: 'listing not found'})
   } catch (err) {
     res.status(500).json({message: ` unable to find listings at the moment : ${err}`})
   }
