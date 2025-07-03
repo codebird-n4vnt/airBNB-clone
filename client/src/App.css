@@ -249,14 +249,16 @@ h1,h3,h4,h2{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    width: 50vw;
-    background-color: rgba(255, 255, 255, 0.438);
+    width: 50%;
+    background-color: rgb(255, 255, 255);
     overflow: auto;
 
     flex-direction: row;   
     /* gap: auto; */
     justify-content: space-evenly;
 }
+
+
 
 .category svg{
     height: 50px;
@@ -270,6 +272,8 @@ h1,h3,h4,h2{
     justify-content: center;
     align-items: center;
     padding: 20px;
+    width: 161.36px;
+    height: 141px;
 }
 
 .category span:hover{
@@ -278,6 +282,7 @@ h1,h3,h4,h2{
     color: #FF385C;
     /* display:block; */
 }
+
 
 .category span:active{
     color:#ff385d8c
@@ -293,6 +298,7 @@ h1,h3,h4,h2{
     color: #FF385C;
     border-bottom: 1px solid rgba(0, 0, 0, 0.226);
 }
+
 
 .pre{
     width: 100%;
@@ -367,6 +373,17 @@ h1,h3,h4,h2{
     
     
 }
+.iAmHost{
+    outline: none;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 6px 10px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.856);
+    background-color: rgba(237, 43, 43, 0.315);
+    margin: 8px 7px;
+    cursor: pointer;
+}
 
 .viewcard-main p{
     padding: 7px;
@@ -397,6 +414,68 @@ h1,h3,h4,h2{
 .card-page-btn:hover{
     color: white;
 }
+
+
+
+.updatelist-pop{
+    width: 100%;
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000a9;
+    position: absolute;
+    top: 0px;
+    z-index: 100;
+    /* align-items: start; */
+
+    backdrop-filter: blur(10px);
+    overflow-y: auto;
+    margin-bottom: 12px;
+}
+
+.updatelist-pop form{
+
+    height: 80vh;
+    overflow: auto;
+    justify-content: start;
+}
+
+
+
+.sticky{
+    position: fixed;
+    top: 0px;
+    
+}
+
+.category h1{
+    text-align: center;
+}
+
+.cross{
+    
+    position:absolute;
+    /* z-index: 101; */
+    top: 1%;
+    left: 1%;
+    cursor: pointer;
+    text-align: start;
+    padding: 7px;
+    color: rgba(255, 255, 255, 0.635);
+    width: 25px;
+    height: 25px;
+
+}
+.cross:hover{
+    background-color: rgba(22, 216, 113, 0.12);
+}
+
+.cross:active{
+    color: white;
+}
+
+
 
 .main{
     display: flex;
@@ -443,6 +522,7 @@ h1,h3,h4,h2{
 .category-details{
     color: rgb(129, 224, 46);
 }
+
 .cardbox{
     display: flex;
     justify-content: flex-start ;

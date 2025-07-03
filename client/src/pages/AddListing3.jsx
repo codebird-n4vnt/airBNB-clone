@@ -21,23 +21,28 @@ const AddListing3 = () => {
   } = useContext(listingDataContext);
   const handleImage1 = (e) => {
     let file = e.target.files[0];
-    if(!file){console.log(file)}
-    console.log(file)
+    if (!file) {
+      console.log(file);
+    }
+    console.log(file);
     setBackEndImage1(file);
     setFrontEndImage1(URL.createObjectURL(file));
-    
   };
   const handleImage2 = (e) => {
     let file = e.target.files[0];
-    if(!file){console.log(file)}
-    console.log(file)
+    if (!file) {
+      console.log(file);
+    }
+    console.log(file);
     setBackEndImage2(file);
     setFrontEndImage2(URL.createObjectURL(file));
   };
   const handleImage3 = (e) => {
     let file = e.target.files[0];
-    if(!file){console.log(file)}
-    console.log(file)
+    if (!file) {
+      console.log(file);
+    }
+    console.log(file);
     setBackEndImage3(file);
     setFrontEndImage3(URL.createObjectURL(file));
   };
@@ -95,23 +100,18 @@ const AddListing3 = () => {
       </form>
 
       <div className="pre">
-        
-          <div className="one">
-            <img src={frontEndImage1} alt="img1" />
+        <div>
+          <div className="pre-image-box1">
+            <img src={frontEndImage1} alt="" />
           </div>
-          <div>
-            <div className="two">
-              <img src={frontEndImage2} alt="img2" />
-            </div>
-            <div className="three">
-              <img src={frontEndImage3} alt="img3" />
-            </div>
+          <div className="pre-image-box2">
+            <img src={frontEndImage2} alt="" />
+            <img src={frontEndImage3} alt="" />
           </div>
-        
-        
+        </div>
       </div>
 
-      hey there
+
     </div>
   );
 };

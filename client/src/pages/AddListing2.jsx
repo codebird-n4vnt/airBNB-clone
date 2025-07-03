@@ -27,6 +27,7 @@ const AddListing2 = () => {
   const [clicked, setClicked] = useState(false);
   return (
     <>
+    <div className="main">
       <div className="head">
         <span className="back-btn" onClick={() => navigate("/addlisting1")}>
           <FaArrowLeft className="arrow" />
@@ -89,6 +90,7 @@ const AddListing2 = () => {
       </div>
       <input type="submit" value="Next" id="submit" onClick={(e)=>{e.preventDefault();addListing();navigate("/addlisting3")}}/>
       </form>
+      </div>
     </>
   );
 };

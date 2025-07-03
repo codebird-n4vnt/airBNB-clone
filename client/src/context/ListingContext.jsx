@@ -39,6 +39,9 @@ const ListingContext = ({ children }) => {
       formData.append("landmark", landmark);
       formData.append("category", category);
 
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ": " + pair[1]);
+      }
       const result = await axios.post(
         serverUrl + "/api/listing/add",
         formData,
@@ -78,12 +81,42 @@ const ListingContext = ({ children }) => {
       console.log(err);
     }
   };
+  let updateListing = async (id) => {
+      let formData = new FormData();
+        formData.append("title", title);
+        formData.append("image1", backEndImage1);
+        formData.append("image2", backEndImage2);
+        formData.append("image3", backEndImage3);
+        formData.append("description", description);
+        formData.append("rent", rent);
+        formData.append("city", city);
+        formData.append("landmark", landmark);
+        formData.append("category", category);
+        for (let pair of formData.entries()) {
+          console.log(pair[0] + ": " + pair[1]);
+        }
+      try {
+        const result = await axios.post(
+          serverUrl + `/api/listing/update/${id}`,
+          formData,
+          { withCredentials: true }
+        );
+        if (!result) {
+          console.log("unable to fetch at the moment");
+        }
+        console.log(result);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    
 
   useEffect(() => {
     getListing();
   }, []);
 
   const value = {
+    updateListing,
     addListing,
     getListing,
     title,
