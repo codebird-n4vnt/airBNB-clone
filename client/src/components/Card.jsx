@@ -3,6 +3,8 @@ import { useContext } from "react";
 import { getUserContext } from "../context/UserContext";
 import { listingDataContext } from "../context/ListingContext";
 import { useNavigate } from "react-router-dom";
+import { IoMdStarOutline } from "react-icons/io";
+
 
 const Card = ({
   title,
@@ -15,10 +17,14 @@ const Card = ({
   image3,
   rent,
   id,
+  ratings,
+  isBooked,
+  guest,
 }) => {
   let navigate = useNavigate();
   let { userData } = useContext(getUserContext);
   let { handleViewCard } = useContext(listingDataContext);
+
   const handleClick = () => {
     if (userData) {
       handleViewCard(id);
@@ -27,15 +33,16 @@ const Card = ({
   return (
     <>
       <div className="card-container" onClick={handleClick}>
+        {isBooked&&<div className="isBooked" ><p>Booked</p></div>}
         <div className="card-images">
           <img src={image1} alt="" />
           <img src={image2} alt="" />
           <img src={image3} alt="" />
-          
         </div>
         <div className="details">
           <p className="location-details">
-            {`${category}`} in {`${city.toUpperCase()}`}
+            <span>{`${category}`} in {`${city.toUpperCase()}`}</span>
+            <span className="ratings"><IoMdStarOutline/> {ratings}</span>
           </p>
           <p>{`${title}`}</p>
           <p className="category-details"> </p>

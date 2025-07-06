@@ -4,11 +4,12 @@ export const isAuth = (req, res, next) => {
   try {
     let { token } = req.cookies;
     if (!token) {
-      return res.status(400).json({ message: "User doesn't exist" });
+
+      return res.status(400).json({ message: "isAuth err User doesn't exist" });
     }
     let verifiedUser = jwt.verify(token, process.env.JWT_SECRET);
     if (!verifiedUser) {
-      return res.status(400).json({ message: "User not verified" });
+      return res.status(400).json({ message: "isauth err : User not verified" });
     }
     req.userId = verifiedUser.userId;
 

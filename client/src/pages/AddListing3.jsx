@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { listingDataContext } from "../context/ListingContext";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -46,6 +46,8 @@ const AddListing3 = () => {
     setBackEndImage3(file);
     setFrontEndImage3(URL.createObjectURL(file));
   };
+
+  
 
   return (
     <div className="main">

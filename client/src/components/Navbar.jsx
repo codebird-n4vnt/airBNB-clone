@@ -12,7 +12,7 @@ import { BsShop } from "react-icons/bs";
 import { MdOutlineBedroomParent } from "react-icons/md";
 import axios from "axios";
 import { FaTreeCity } from "react-icons/fa6";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authDataContext } from "../context/AuthContext";
 import { getUserContext } from "../context/UserContext";
@@ -47,6 +47,8 @@ export const Navbar = () => {
       setNewListing(listing.filter((list) => list.category === categ));
     }
   };
+
+  
   return (
     <>
       <div className="Navbox">
@@ -87,9 +89,9 @@ export const Navbar = () => {
 
                 <p className="breakline"></p>
                 <p className="extra-break"></p>
-                <p onClick={() => navigate("addlisting")}>Become a host</p>
-                <p onClick={() => navigate("mylisting")}>My listings</p>
-                <p>My bookings</p>
+                <p onClick={() => navigate("/addlisting")}>Become a host</p>
+                <p onClick={() => navigate("/mylisting")}>My listings</p>
+                <p onClick={()=> navigate("/mybooking")}>My bookings</p>
               </div>
             )}
           </div>

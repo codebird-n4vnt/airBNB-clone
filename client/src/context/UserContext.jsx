@@ -31,6 +31,7 @@ function UserContext({ children }) {
   let value = {
     userData,
     setUserData,
+    getUserData,
   };
   return (
     <getUserContext.Provider value={value}>{children}</getUserContext.Provider>

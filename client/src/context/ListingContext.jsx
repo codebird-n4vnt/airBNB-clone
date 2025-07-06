@@ -23,6 +23,8 @@ const ListingContext = ({ children }) => {
   let [listing, setListing] = useState([]);
   let [newListing, setNewListing] = useState([]);
   let [cardDetails, setCardDetails] = useState(null);
+  let [updating,setUpdating] = useState(false);
+  let [deleting,setDeleting] = useState(false);
   let navigate = useNavigate();
   const { serverUrl } = useContext(authDataContext);
 
@@ -76,17 +78,18 @@ const ListingContext = ({ children }) => {
       });
       setListing(result.data);
       setNewListing(result.data);
-      console.log(listing);
+      
     } catch (err) {
       console.log(err);
     }
   };
   let updateListing = async (id) => {
+    setUpdating(true);
       let formData = new FormData();
         formData.append("title", title);
-        formData.append("image1", backEndImage1);
-        formData.append("image2", backEndImage2);
-        formData.append("image3", backEndImage3);
+        if(backEndImage1){formData.append("image1", backEndImage1);}
+        if(backEndImage2){formData.append("image2", backEndImage2);}
+        if(backEndImage3){formData.append("image3", backEndImage3);}
         formData.append("description", description);
         formData.append("rent", rent);
         formData.append("city", city);
@@ -105,17 +108,37 @@ const ListingContext = ({ children }) => {
           console.log("unable to fetch at the moment");
         }
         console.log(result);
+        setUpdating(false)
       } catch (error) {
+        setUpdating(false)
         console.log(error);
       }
     };
     
+
+    let deleteListing = async (id) =>{
+      try {
+        setDeleting(true)
+        let result = await axios.delete(serverUrl + `/api/listing/deletelisting/${id}`, {withCredentials:true})
+        if(!result){
+          console.log('Error in deleting')
+        }
+        console.log(result)
+        setDeleting(false)
+      } catch (err) {
+        setDeleting(false)
+        console.log(err);
+      }
+    }
 
   useEffect(() => {
     getListing();
   }, []);
 
   const value = {
+    deleting,
+    deleteListing,
+    updating,
     updateListing,
     addListing,
     getListing,

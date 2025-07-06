@@ -11,6 +11,7 @@ import Mylisting from './pages/mylisting.jsx'
 import { useContext } from 'react'
 import { getUserContext } from './context/UserContext.jsx'
 import ViewCard from './pages/ViewCard.jsx'
+import Mybooking from './pages/Mybooking.jsx'
 
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route  path='/addlisting2' element={userData?<AddListing2/>:<Navigate to={'/'}/>}  /> 
         <Route  path='/addlisting3' element={userData?<AddListing3/>:<Navigate to={'/'}/>}  /> 
         <Route  path='/viewcard' element={userData?<ViewCard/>:<Navigate to={'/'}/>}  /> 
+        <Route  path='/mybooking' element={userData?<Mybooking/>:<Navigate to={'/'}/>}  /> 
       </Routes>
 
     </>

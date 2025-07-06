@@ -9,6 +9,7 @@ import userRoutes from './routes/userRoutes.js'
 import cookieParser from 'cookie-parser';
 import authenticatedUserRoutes from './routes/authenticatedUserRoutes.js';
 import listingRouter from './routes/listingRoute.js';
+import bookingRouter from './routes/bookingRoute.js';
 
 const app = express();
 app.use(cors({
@@ -22,7 +23,7 @@ app.use(express.json())
 app.use("/api/auth", userRoutes)
 app.use("/api/user", authenticatedUserRoutes)
 app.use("/api/listing", listingRouter)
-
+app.use("/api/booking", bookingRouter)
 
 
 app.listen(process.env.PORT,()=>{
