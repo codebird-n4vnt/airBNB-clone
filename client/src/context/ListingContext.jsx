@@ -29,6 +29,7 @@ const ListingContext = ({ children }) => {
   let [deleting, setDeleting] = useState(false);
   let [bookedData, setBookedData] = useState([]);
   let [rating, setRating] = useState(0);
+  let [searchData, setSearchData] = useState([])
   const {getUserData} = useContext(getUserContext)
   const {userData} = useContext(getUserContext)
 
@@ -210,6 +211,27 @@ const ListingContext = ({ children }) => {
     }
   };
 
+  const handleSearch = async (data) =>{
+    try {
+      if(data){
+        let result = await axios.get(
+        serverUrl + `/api/listing/search?query=${data}`
+      );
+      if (!result) {
+        toast.error("Something went wrong !!")
+        console.log("Error in search");
+      }
+      setSearchData(result.data);
+      }
+      else{
+        setSearchData([])
+      }
+    } catch (err) {
+      setSearchData(null)
+      console.log(err)
+    }
+  }
+
 
 
   useEffect(() => {
@@ -252,7 +274,8 @@ const ListingContext = ({ children }) => {
     setCardDetails,
     handleViewCard,
     bookedData,setBookedData,
-    rating,setRating,rateListing
+    rating,setRating,rateListing,
+    handleSearch, searchData, setSearchData,
   };
 
   return (

@@ -26,7 +26,8 @@ export const Navbar = () => {
   const [showHampop, setShowHampop] = useState(false);
   const navigate = useNavigate();
   const { category, setCategory } = useContext(listingDataContext);
-  
+  let {handleSearch,searchData} = useContext(listingDataContext);
+  let [input,setInput ] = useState('')
   const handleLogout = async () => {
     try {
       let result = await axios.post(serverUrl + "/api/auth/logout", {
@@ -51,6 +52,13 @@ export const Navbar = () => {
     }
   };
 
+  useEffect(()=>{
+    if(!input){
+      setInput('')
+    }
+    handleSearch(input);
+    
+  },[input])
   
   return (
     <>
@@ -105,12 +113,25 @@ export const Navbar = () => {
               type="text"
               id="search"
               placeholder="Any where  |  Any location  |  Any city"
+              onChange={(e)=>setInput(e.target.value)}
+              value={input}
             />
             <button>
               <LuSearch className="search-ico" />
             </button>
           </div>
         </div>
+
+        {searchData && searchData?.length > 0 && <div className="search-pop">
+          <div className="search-pop-container">
+           {searchData.map((search)=>
+            <div className=" search-pop-items">
+              <img src={search.image1} alt="" />
+              <p>{search.title} <br />{search.category} in {search.city}, {search.landmark}  </p>
+            </div>
+           )}
+          </div>
+        </div>}
         <div className="hots">
           <div>
             <span onClick={() => handleCategory("Trending")}>

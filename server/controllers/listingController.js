@@ -125,8 +125,9 @@ export const ratingListing = async(req,res)=>{
 
 
 export const search = async (req,res) =>{
-  let query = req.query;
-  let result = await Listing.find({
+  try {
+    let {query} = req.query;
+  let listing = await Listing.find({
     $or : [
       { title: {$regex:query, $options: "i"}},
       { landmark: {$regex:query, $options: "i"}},
@@ -134,4 +135,12 @@ export const search = async (req,res) =>{
       { category: {$regex:query, $options: "i"}},
     ]
   })
+  if(!listing){
+    return res.status(400).json({message:'No such property found'})
+  }
+
+  return res.status(200).json(listing);
+  } catch (err) {
+    return res.status(500).json({message:`search err : ${err}`})
+  }
 }
