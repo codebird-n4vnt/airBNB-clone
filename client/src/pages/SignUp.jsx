@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import { authDataContext } from '../context/AuthContext';
 import {getUserContext} from "../context/UserContext"
+import { toast } from 'react-toastify';
 
 
 
@@ -31,8 +32,10 @@ function SignUp() {
         },{withCredentials:true})
         setUserData(result.data);
         navigate("/")
+        toast.success("Sign up successful")
         console.log(result)
       }catch(err){
+        toast.error(err.response.data.message)
           console.log(err)
       }
     }

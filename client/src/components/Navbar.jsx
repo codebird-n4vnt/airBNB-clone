@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { authDataContext } from "../context/AuthContext";
 import { getUserContext } from "../context/UserContext";
 import { listingDataContext } from "../context/ListingContext";
+import { toast } from "react-toastify";
 
 export const Navbar = () => {
   const { serverUrl } = useContext(authDataContext);
@@ -33,8 +34,10 @@ export const Navbar = () => {
       });
       console.log(result);
       setUserData(null);
+      toast.success("Logout successful")
       
     } catch (err) {
+      toast.error("Something went wrong !!")
       console.log(err);
     }
   };
@@ -84,7 +87,7 @@ export const Navbar = () => {
                 {!userData? (
                   <p onClick={() => navigate("/login")}>Login</p>
                 ) : (
-                  <p onClick={() => handleLogout()}>Logout</p>
+                  <p onClick={() => {handleLogout()}}>Logout</p>
                 )}
 
                 <p className="breakline"></p>

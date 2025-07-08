@@ -275,7 +275,7 @@ h2 {
 
 .pre {
   width: 100%;
-  height: 400px;  
+  height: 400px;
   /* width: 70vw; */
   display: flex;
   justify-content: center;
@@ -376,18 +376,18 @@ h2 {
   color: #ff385c;
   cursor: pointer;
 }
-.isBooked{
+.isBooked {
   display: flex;
   justify-content: center;
-  
+
   color: rgb(10, 66, 10);
   position: absolute;
-      width: 370px;
-    height: 460px;
+  width: 370px;
+  height: 460px;
   background-color: rgba(255, 255, 255, 0.528);
   pointer-events: none;
 }
-.isBooked p{
+.isBooked p {
   position: absolute;
   top: 140px;
   font-size: 25px;
@@ -396,9 +396,10 @@ h2 {
 .card-page-btn {
   outline: none;
   border: none;
-  border-radius: 0.4rem;
+  border-radius: 0.6rem;
   padding: 6px 10px;
   font-size: 17px;
+  min-width: 60px;
   color: rgba(255, 255, 255, 0.947);
   background-color: rgb(237, 43, 43);
   margin: 8px 7px;
@@ -430,7 +431,7 @@ h2 {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   background-color: #ffffff4b;
   position: absolute;
   top: 0px;
@@ -456,8 +457,8 @@ h2 {
   padding: 0px;
 }
 
-
-.book-confirm, .book-details {
+.book-confirm,
+.book-details {
   background-color: white;
   width: 28vw;
   border-radius: 1rem;
@@ -466,26 +467,26 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid #00000016; 
+  border: 1px solid #00000016;
 }
 
-.booked-cards{
+.booked-cards {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.booked-cards .card-container{
+.booked-cards .card-container {
   height: 400px;
 }
-.box-for-a-card{
+.box-for-a-card {
   /* position: absolute; */
-  
+
   z-index: 20;
 }
-.book-details-card{
+.book-details-card {
   gap: 2px;
-  margin: 30px 30px 4px 30px ;
+  margin: 30px 30px 4px 30px;
   /* margin-top: 40px; */
   border-radius: 0.2rem;
   height: 30%;
@@ -494,21 +495,20 @@ h2 {
   /* justify-content: start; */
   align-items: center;
 }
-.book-details-card img{
-
-  margin: 6px 2px 6px 12px ;
+.book-details-card img {
+  margin: 6px 2px 6px 12px;
   width: 100px;
   height: 100px;
   flex-shrink: none;
   border-radius: 0.5rem;
 }
-.book-details-card p{
+.book-details-card p {
   font-size: medium;
   overflow: hidden;
   text-overflow: ellipsis;
   text-wrap: nowrap;
 }
-.book-details-rent{
+.book-details-rent {
   display: flex;
   justify-items: center;
   align-items: center;
@@ -519,8 +519,8 @@ h2 {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-
-.book-details-rent div,.book-details-rent article{
+.book-details-rent div,
+.book-details-rent article {
   width: 90%;
   margin: 0px 4px;
   display: flex;
@@ -529,15 +529,15 @@ h2 {
   padding: 0px 20px;
 }
 
-.book-details-rent article{
+.book-details-rent article {
   display: flex;
   justify-content: space-between;
   width: 90%;
 }
-.book-details-rent>p{
+.book-details-rent > p {
   display: flex;
 }
-.book-details-rent .breakline{
+.book-details-rent .breakline {
   width: 80%;
 }
 .updatelist-pop form {
@@ -547,10 +547,9 @@ h2 {
   overflow: auto;
   justify-content: start;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.419);
-  
 }
 
-.bookingPop form>div{
+.bookingPop form > div {
   width: 20vw;
   margin-top: 18px;
   gap: 12px;
@@ -558,10 +557,9 @@ h2 {
   justify-content: center;
   align-items: center;
   overflow: auto;
-  
 }
 
-.bookingPop form>div>div{
+.bookingPop form > div > div {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -569,7 +567,7 @@ h2 {
   align-items: center;
 }
 
-.bookingPop form>input{
+.bookingPop form > input {
   margin-top: 35px;
 }
 
@@ -581,14 +579,14 @@ h2 {
   gap: 10px;
 }
 
-.booking-header{
+.booking-header {
   width: 100%;
   margin: 10px 0px;
   padding: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.332) ;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.332);
 }
 
 .sticky {
@@ -671,7 +669,7 @@ h2 {
   width: 100%;
   padding: 20px 7px;
 }
-.location-details{
+.location-details {
   width: 100%;
   display: flex;
   align-items: center;
@@ -680,11 +678,11 @@ h2 {
 .rent-details span {
   color: #ff385c;
 }
-.ratings{
-  margin-right: 19px ;
+.ratings {
+  margin-right: 19px;
   display: flex;
-  align-items:center;
-  line-height: 19px  ;
+  align-items: center;
+  line-height: 19px;
 }
 /* .details p {
   
@@ -695,7 +693,11 @@ h2 {
 .category-details {
   color: rgb(129, 224, 46);
 }
-
+.myBookings {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
 .cardbox {
   display: flex;
   justify-content: flex-start;
@@ -710,6 +712,94 @@ h2 {
   display: none;
 }
 
+.popup {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  top: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pop-cancelBooking {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  height: 150px;
+  width: 375px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.184);
+  border: 1px solid rgba(0, 0, 0, 0.108);
+  border-radius: 1rem;
+}
+
+.booked-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.144);
+  width: 100vw;
+  height: 100vh;
+}
+
+.booked-box {
+  background-color: #fff;
+  width: 480px;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 35px 6px;
+}
+.rate-box {
+  background-color: #fff;
+  width: 480px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 35px 6px;
+}
+.booked-box h2{
+  font-size: 34px;
+  
+}
+.booked-box div{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 10%;
+  
+}
+
+.booked-box span{
+  margin: 2px 16px;
+  display: inline;
+}
+
+.booked-box h3{
+  margin-bottom: 29px;
+  padding-top: 0px ;
+}
+
+.star{
+  font-size: 24px;
+  cursor: pointer;
+  color: gray;
+}
+.isFilled{
+  color: yellow;
+}
 @media screen and (max-width: 890px) {
   .becomeAHost {
     display: none;
@@ -747,7 +837,7 @@ h2 {
     height: 400px;
     gap: 7px;
     border-radius: 2rem;
-    margin-bottom: 2px ;
+    margin-bottom: 2px;
   }
   .pre-image-box1 {
     text-align: center;

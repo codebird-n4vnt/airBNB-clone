@@ -105,3 +105,33 @@ export const deleteListing = async (req,res) =>{
     return res.status(500).json({message:`delete listing err :  ${err}`})
   }
 }
+
+
+export const ratingListing = async(req,res)=>{
+  try {
+    let {id} = req.params;
+  let {rating} = req.body;
+  let listing = await Listing.findById(id);
+  if(!listing){
+    return res.status(400).json({message:'No such listing found'});
+  }
+  listing.ratings = Number(rating);
+  await listing.save();
+  return res.status(200).json({ratings:listing.ratings})
+  } catch (err ) {
+    return res.status(500).json({message:`ratingListing err ${err}`})
+  }
+}
+
+
+export const search = async (req,res) =>{
+  let query = req.query;
+  let result = await Listing.find({
+    $or : [
+      { title: {$regex:query, $options: "i"}},
+      { landmark: {$regex:query, $options: "i"}},
+      { city: {$regex:query, $options: "i"}},
+      { category: {$regex:query, $options: "i"}},
+    ]
+  })
+}

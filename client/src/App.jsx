@@ -2,6 +2,7 @@ import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
+import { ToastContainer, toast } from 'react-toastify';
 import SignUp from './pages/SignUp'
 import "./App.css"
 import AddListing1 from './pages/AddListing1.jsx'
@@ -12,6 +13,7 @@ import { useContext } from 'react'
 import { getUserContext } from './context/UserContext.jsx'
 import ViewCard from './pages/ViewCard.jsx'
 import Mybooking from './pages/Mybooking.jsx'
+import Booked from './pages/Booked.jsx'
 
 
 
@@ -20,6 +22,7 @@ function App() {
   let {userData} = useContext(getUserContext)
   return (
     <>
+      <ToastContainer/>
       <Routes>
         <Route  path='/' element=<Home/>  />
         <Route  path='/login' element=<Login/>  />
@@ -29,7 +32,8 @@ function App() {
         <Route  path='/addlisting2' element={userData?<AddListing2/>:<Navigate to={'/'}/>}  /> 
         <Route  path='/addlisting3' element={userData?<AddListing3/>:<Navigate to={'/'}/>}  /> 
         <Route  path='/viewcard' element={userData?<ViewCard/>:<Navigate to={'/'}/>}  /> 
-        <Route  path='/mybooking' element={userData?<Mybooking/>:<Navigate to={'/'}/>}  /> 
+        <Route  path='/mybooking' element={userData?<Mybooking/>:<Navigate to={'/mybooking'}/>}  /> 
+        <Route  path='/booked' element={userData?<Booked/>:<Navigate to={'/booked'}/>}  /> 
       </Routes>
 
     </>

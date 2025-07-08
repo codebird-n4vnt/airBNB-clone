@@ -4,6 +4,8 @@ import { createContext } from "react";
 import { authDataContext } from "./AuthContext.jsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { getUserContext } from "./UserContext.jsx";
+import { toast } from "react-toastify";
 
 export const listingDataContext = createContext();
 
@@ -23,8 +25,14 @@ const ListingContext = ({ children }) => {
   let [listing, setListing] = useState([]);
   let [newListing, setNewListing] = useState([]);
   let [cardDetails, setCardDetails] = useState(null);
-  let [updating,setUpdating] = useState(false);
-  let [deleting,setDeleting] = useState(false);
+  let [updating, setUpdating] = useState(false);
+  let [deleting, setDeleting] = useState(false);
+  let [bookedData, setBookedData] = useState([]);
+  let [rating, setRating] = useState(0);
+  const {getUserData} = useContext(getUserContext)
+  const {userData} = useContext(getUserContext)
+
+
   let navigate = useNavigate();
   const { serverUrl } = useContext(authDataContext);
 
@@ -51,9 +59,24 @@ const ListingContext = ({ children }) => {
       );
       if (!result) {
         console.log("unable to fetch at the moment");
+        toast.error("Something went wrong !!")
       }
+      toast.success("Lisitng added successfully")
       console.log(result);
+      setTitle("");
+      setDescription("")
+      setFrontEndImage1(null)
+      setFrontEndImage2(null)
+      setFrontEndImage3(null)
+      setBackEndImage1(null)
+      setBackEndImage2(null)
+      setBackEndImage3(null)
+      setRent("")
+      setCity("")
+      setLandmark("")
+      setCategory("")
     } catch (error) {
+      toast.error(error.response.data.message)
       console.log(error);
     }
   };
@@ -64,9 +87,16 @@ const ListingContext = ({ children }) => {
         serverUrl + `/api/listing/findlistingbyid/${id}`,
         { withCredentials: true }
       );
+      if(!result){
+        console.log('error in getting card details')
+        toast.error("Something went wrong !!")
+      }
       setCardDetails(result.data);
       navigate("/viewcard");
+
     } catch (err) {
+
+      toast.error(err.response.data.message)
       console.log(err);
     }
   };
@@ -76,63 +106,114 @@ const ListingContext = ({ children }) => {
       let result = await axios.get(serverUrl + "/api/listing/get", {
         withCredentials: true,
       });
+      if(!result){
+        console.log("Error in getting listing")
+        toast.error("Something went wrong !!")
+      }
       setListing(result.data);
       setNewListing(result.data);
-      
     } catch (err) {
+      toast.error(err.response.data.message)
       console.log(err);
     }
   };
+  let rateListing = async (id) =>{
+    try {
+      let result = await axios.post(serverUrl + `/api/listing/rate/${id}`,{rating:rating},{withCredentials:true})
+      if(!result){
+        console.log('error in updating ratings')
+        toast.error("Something went wrong !!")
+      }
+      await getListing();
+      await getUserData();
+      console.log(result)
+      navigate('/')
+      toast.success("Rated successfully")
+      setRating(0)
+    } catch (err) {
+      toast.error(err.response.data.message)
+      setRating(0)
+      console.log(err)
+    }
+  }
   let updateListing = async (id) => {
     setUpdating(true);
-      let formData = new FormData();
-        formData.append("title", title);
-        if(backEndImage1){formData.append("image1", backEndImage1);}
-        if(backEndImage2){formData.append("image2", backEndImage2);}
-        if(backEndImage3){formData.append("image3", backEndImage3);}
-        formData.append("description", description);
-        formData.append("rent", rent);
-        formData.append("city", city);
-        formData.append("landmark", landmark);
-        formData.append("category", category);
-        for (let pair of formData.entries()) {
-          console.log(pair[0] + ": " + pair[1]);
-        }
-      try {
-        const result = await axios.post(
-          serverUrl + `/api/listing/update/${id}`,
-          formData,
-          { withCredentials: true }
-        );
-        if (!result) {
-          console.log("unable to fetch at the moment");
-        }
-        console.log(result);
-        setUpdating(false)
-      } catch (error) {
-        setUpdating(false)
-        console.log(error);
-      }
-    };
-    
-
-    let deleteListing = async (id) =>{
-      try {
-        setDeleting(true)
-        let result = await axios.delete(serverUrl + `/api/listing/deletelisting/${id}`, {withCredentials:true})
-        if(!result){
-          console.log('Error in deleting')
-        }
-        console.log(result)
-        setDeleting(false)
-      } catch (err) {
-        setDeleting(false)
-        console.log(err);
-      }
+    let formData = new FormData();
+    formData.append("title", title);
+    if (backEndImage1) {
+      formData.append("image1", backEndImage1);
     }
+    if (backEndImage2) {
+      formData.append("image2", backEndImage2);
+    }
+    if (backEndImage3) {
+      formData.append("image3", backEndImage3);
+    }
+    formData.append("description", description);
+    formData.append("rent", rent);
+    formData.append("city", city);
+    formData.append("landmark", landmark);
+    formData.append("category", category);
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+    try {
+      const result = await axios.post(
+        serverUrl + `/api/listing/update/${id}`,
+        formData,
+        { withCredentials: true }
+      );
+      if (!result) {
+        toast.error("Something went wrong !!")
+        console.log("unable to fetch at the moment");
+      }
+      console.log(result);
+      setUpdating(false);
+      toast.success("Update successful")
+      setTitle("");
+      setDescription("")
+      setFrontEndImage1(null)
+      setFrontEndImage2(null)
+      setFrontEndImage3(null)
+      setBackEndImage1(null)
+      setBackEndImage2(null)
+      setBackEndImage3(null)
+      setRent("")
+      setCity("")
+      setLandmark("")
+      setCategory("")
+    } catch (error) {
+      toast.error(error.response.data.message)
+      setUpdating(false);
+      console.log(error);
+    }
+  };
+
+  let deleteListing = async (id) => {
+    try {
+      setDeleting(true);
+      let result = await axios.delete(
+        serverUrl + `/api/listing/deletelisting/${id}`,
+        { withCredentials: true }
+      );
+      if (!result) {
+        toast.error("Something went wrong !!")
+        console.log("Error in deleting");
+      }
+      console.log(result);
+      setDeleting(false);
+      toast.success("Deleted successfully")
+    } catch (err) {
+      toast.error(err.response.data.message)
+      setDeleting(false);
+      console.log(err);
+    }
+  };
+
+
 
   useEffect(() => {
-    getListing();
+    getListing(); 
   }, []);
 
   const value = {
@@ -170,6 +251,8 @@ const ListingContext = ({ children }) => {
     cardDetails,
     setCardDetails,
     handleViewCard,
+    bookedData,setBookedData,
+    rating,setRating,rateListing
   };
 
   return (

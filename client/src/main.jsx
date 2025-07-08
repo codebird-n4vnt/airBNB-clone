@@ -12,13 +12,13 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <AuthContext>
-        <ListingContext>
-          <UserContext>
+        <UserContext>
+          <ListingContext>
             <BookingContext>
               <App />
             </BookingContext>
-          </UserContext>
-        </ListingContext>
+          </ListingContext>
+        </UserContext>
       </AuthContext>
     </BrowserRouter>
   </StrictMode>

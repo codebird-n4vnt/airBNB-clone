@@ -438,7 +438,7 @@ const ViewCard = () => {
                     id={deleting || updating ? "disabled" : "submit"}
                     onClick={async (e) => {
                       e.preventDefault();
-                      navigate("/");
+                      navigate("/booked");
                       handleBooking(cardDetails._id);
                     }}
                   />

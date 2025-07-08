@@ -19,6 +19,7 @@ function UserContext({ children }) {
       });
         setUserData(result.data);
     } catch (error) {
+      toast.error("Something went wrong !!")
       setUserData(null);
       console.log(error);
     }
